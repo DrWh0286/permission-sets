@@ -11,6 +11,18 @@ services:
     tags:
       - name: event.listener
         identifier: 'b13/permission-sets'
+  B13\PermissionSets\AttachPermissionsSetsToGroups:
+    tags:
+      - name: event.listener
+        identifier: 'b13/be-groups-permissions'
+        before: 'b13/permission-sets'
+
+  B13\PermissionSets\Command\CreateBeGroupsCommand:
+    public: true
+    tags:
+      - name: 'console.command'
+        command: 'permissionset:createbegrops'
+        description: 'Creates missing be_groups records from config/be-groups-configurations.'
 
   B13\PermissionSets\PermissionSetRegistry:
     shared: true
